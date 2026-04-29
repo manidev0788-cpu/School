@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/Card";
 import { formatInr } from "@/lib/fees-data";
 
-export default function FeesSummaryCards({ totalCollected, totalPending, totalStudents }) {
+export default function FeesSummaryCards({ totalCollected, totalPending, recordCount }) {
   const items = [
     {
       label: "Total fees collected",
@@ -12,14 +12,14 @@ export default function FeesSummaryCards({ totalCollected, totalPending, totalSt
       accent: "bg-emerald-500",
     },
     {
-      label: "Total pending amount",
+      label: "Total pending fees",
       value: formatInr(totalPending),
       tone: "border-rose-200/90 bg-rose-50/90 text-rose-950 ring-rose-100",
       accent: "bg-rose-500",
     },
     {
-      label: "Total students",
-      value: String(totalStudents),
+      label: "Records (filtered)",
+      value: String(recordCount),
       tone: "border-slate-200 bg-slate-50/90 text-slate-900 ring-slate-100",
       accent: "bg-[#1d4ed8]",
     },

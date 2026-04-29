@@ -6,17 +6,24 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:ensure-students": "node --env-file=.env.local scripts/apply-ensure-students.mjs",
+    "db:ensure-class-fees": "node --env-file=.env.local scripts/apply-ensure-class-fees.mjs",
+    "test:student-insert": "node --env-file=.env.local scripts/test-student-form-insert.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.105.1",
+    "date-fns": "^4.1.0",
     "next": "16.2.4",
     "react": "19.2.4",
+    "react-day-picker": "^9.14.0",
     "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "pg": "^8.13.1",
     "tailwindcss": "^4"
   }
 }

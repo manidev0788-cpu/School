@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { DEMO_USERS, ROLE_HOME } from "@/lib/auth-config";
@@ -47,12 +46,6 @@ const features = [
   },
 ];
 
-const demoAccounts = [
-  { role: "Admin", email: "admin@demo.com", pass: "123456", badgeClass: "bg-indigo-500/15 text-indigo-700 ring-indigo-400/30" },
-  { role: "Teacher", email: "teacher@demo.com", pass: "123456", badgeClass: "bg-sky-500/15 text-sky-800 ring-sky-400/35" },
-  { role: "Parent", email: "parent@demo.com", pass: "123456", badgeClass: "bg-emerald-500/15 text-emerald-800 ring-emerald-400/35" },
-];
-
 export default function LoginPageClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -71,7 +64,7 @@ export default function LoginPageClient() {
 
     const account = DEMO_USERS[email];
     if (!account || account.password !== password) {
-      setError("Email or password is incorrect. Use the demo credentials below.");
+      setError("Email or password is incorrect.");
       return;
     }
 
@@ -141,7 +134,7 @@ export default function LoginPageClient() {
       </div>
 
       {/* —— Right: login + ambient background (50%) —— */}
-      <div className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-5 py-14 sm:px-10 lg:px-12 lg:py-10">
+      <div className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-5 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-16">
         {/* Depth: blurred shapes */}
         <div className="pointer-events-none absolute -left-24 top-1/4 h-80 w-80 rounded-full bg-[#2563eb]/25 blur-[100px]" aria-hidden />
         <div className="pointer-events-none absolute -right-16 bottom-1/4 h-96 w-96 rounded-full bg-[#38bdf8]/25 blur-[110px]" aria-hidden />
@@ -155,34 +148,36 @@ export default function LoginPageClient() {
           aria-hidden
         />
 
-        <div className="relative z-1 w-full max-w-lg">
-          <div className="rounded-2xl border border-white/70 bg-white/80 p-9 shadow-[0_28px_80px_-20px_rgb(37,99,235,0.18)] ring-1 ring-slate-200/60 backdrop-blur-xl sm:p-11">
+        <div className="relative z-1 flex w-full max-w-md flex-col">
+          <div className="rounded-2xl border border-white/70 bg-white/85 px-8 py-10 shadow-[0_28px_80px_-20px_rgb(37,99,235,0.18)] ring-1 ring-slate-200/60 backdrop-blur-xl sm:px-10 sm:py-12">
             <div className="text-center">
               <div
                 className={`mx-auto flex h-20 w-20 items-center justify-center rounded-2xl ${brandGradient} text-4xl font-extrabold tracking-tight text-white shadow-xl shadow-[#2563eb]/40 ring-4 ring-white`}
               >
                 E
               </div>
-              <h2 className="mt-7 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Welcome back</h2>
-              <p className="mt-3 text-lg font-medium text-slate-500">Sign in to access your workspace</p>
+              <h2 className="mt-8 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Welcome back</h2>
+              <p className="mt-3 text-base font-medium leading-relaxed text-slate-500 sm:text-lg">
+                Sign in to access your workspace
+              </p>
             </div>
 
             {from && !error ? (
-              <div className="mt-8 rounded-xl border border-amber-200/90 bg-amber-50/95 px-5 py-4 text-center text-base font-semibold text-amber-950 shadow-sm ring-1 ring-amber-100">
-                Sign in to continue from your previous page. Use a demo account below.
+              <div className="mt-8 rounded-xl border border-amber-200/90 bg-amber-50/95 px-5 py-4 text-center text-sm font-semibold leading-snug text-amber-950 shadow-sm ring-1 ring-amber-100 sm:text-base">
+                Sign in to continue to your previous page.
               </div>
             ) : null}
 
             {error ? (
               <div
-                className="mt-8 rounded-xl border border-rose-200 bg-rose-50 px-5 py-4 text-center text-base font-semibold text-rose-900 shadow-sm ring-1 ring-rose-100"
+                className="mt-8 rounded-xl border border-rose-200 bg-rose-50 px-5 py-4 text-center text-sm font-semibold leading-snug text-rose-900 shadow-sm ring-1 ring-rose-100 sm:text-base"
                 role="alert"
               >
                 {error}
               </div>
             ) : null}
 
-            <form className={`space-y-6 ${from || error ? "mt-6" : "mt-10"}`} onSubmit={handleSubmit}>
+            <form className={`space-y-7 ${from || error ? "mt-8" : "mt-10"}`} onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="login-email" className="mb-2.5 block text-lg font-semibold text-slate-800">
                   Email
@@ -224,7 +219,7 @@ export default function LoginPageClient() {
               <button
                 type="submit"
                 disabled={busy}
-                className={`group relative mt-1 w-full overflow-hidden rounded-xl py-4 text-lg font-bold text-white shadow-[0_14px_44px_-14px_rgb(37,99,235,0.75)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_50px_-14px_rgb(37,99,235,0.65)] active:translate-y-0 disabled:cursor-wait disabled:opacity-88 ${brandGradientBtn}`}
+                className={`group relative mt-2 w-full overflow-hidden rounded-xl py-4 text-lg font-bold text-white shadow-[0_14px_44px_-14px_rgb(37,99,235,0.75)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_50px_-14px_rgb(37,99,235,0.65)] active:translate-y-0 disabled:cursor-wait disabled:opacity-88 ${brandGradientBtn}`}
               >
                 <span className="relative z-1">{busy ? "Signing in…" : "Sign in"}</span>
                 <span
@@ -233,44 +228,10 @@ export default function LoginPageClient() {
                 />
               </button>
             </form>
-
-            {/* Demo credentials — badge cards */}
-            <div className="mt-10 rounded-2xl border border-[#bfdbfe]/80 bg-linear-to-b from-sky-50/90 to-white/90 p-6 shadow-inner ring-1 ring-[#dbeafe]/90">
-              <p className="text-center text-sm font-bold uppercase tracking-[0.18em] text-[#2563eb]/80">Demo access</p>
-              <ul className="mt-6 space-y-4">
-                {demoAccounts.map(({ role, email, pass, badgeClass }) => (
-                  <li
-                    key={role}
-                    className="flex flex-col gap-3 rounded-xl border border-slate-100 bg-white/95 px-5 py-4 shadow-sm ring-1 ring-slate-100/90 transition hover:border-[#bfdbfe] hover:shadow-md sm:flex-row sm:items-center sm:justify-between sm:gap-4"
-                  >
-                    <span
-                      className={`inline-flex w-fit shrink-0 items-center rounded-full px-4 py-1.5 text-sm font-bold uppercase tracking-wide ring-1 ${badgeClass}`}
-                    >
-                      {role}
-                    </span>
-                    <div className="min-w-0 flex-1 text-right font-mono text-sm leading-relaxed text-slate-700 sm:text-base">
-                      <span className="break-all">{email}</span>
-                      <span className="mx-2 text-slate-300">·</span>
-                      <span className="tabular-nums">{pass}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <p className="mt-9 text-center text-lg text-slate-600">
-              Public site?{" "}
-              <Link
-                href="/landing"
-                className="font-semibold text-[#2563eb] underline-offset-4 transition hover:text-[#1e40af] hover:underline"
-              >
-                View landing
-              </Link>
-            </p>
           </div>
 
-          <p className="mt-10 text-center text-sm font-medium text-slate-400 sm:text-base">
-            © {new Date().getFullYear()} E-Skool · Demo session (no backend)
+          <p className="mt-8 text-center text-sm font-medium text-slate-400 sm:text-base">
+            © {new Date().getFullYear()} E-Skool
           </p>
         </div>
       </div>

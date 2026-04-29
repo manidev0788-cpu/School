@@ -2,7 +2,7 @@
 
 import { Card } from "@/components/ui/Card";
 
-export default function AttendanceSummary({ total, present, absent, late }) {
+export default function AttendanceSummary({ total, present, absent }) {
   const items = [
     {
       label: "Total students",
@@ -39,12 +39,6 @@ export default function AttendanceSummary({ total, present, absent, late }) {
           </Card>
         ))}
       </div>
-      {late > 0 ? (
-        <p className="text-sm font-semibold text-amber-800">
-          <span className="rounded-md bg-amber-100 px-2 py-0.5 font-bold text-amber-950">Late</span>{" "}
-          <span className="tabular-nums">{late}</span> student{late === 1 ? "" : "s"} — counted separately from present/absent above.
-        </p>
-      ) : null}
     </div>
   );
 }

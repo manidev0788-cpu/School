@@ -29,6 +29,18 @@ body {
   font-size: 1rem;
 }
 
+/* Pointer hand on links (Next.js <Link> renders <a href>) */
+a[href],
+area[href] {
+  cursor: pointer;
+}
+
+/* Same hand cursor on clickable buttons (Cancel, icon buttons, etc.) */
+button:not(:disabled):not([disabled]),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
 @keyframes erp-step-fade {
   from {
     opacity: 0;

@@ -13,12 +13,6 @@ const OPTIONS = [
     selectedClass:
       "border-rose-400 bg-rose-500/15 text-rose-900 ring-2 ring-rose-400/70 shadow-[0_0_0_3px_rgb(244,63,94,0.12)]",
   },
-  {
-    key: "late",
-    label: "Late",
-    selectedClass:
-      "border-amber-400 bg-amber-400/25 text-amber-950 ring-2 ring-amber-400/80 shadow-[0_0_0_3px_rgb(251,191,36,0.18)]",
-  },
 ];
 
 export default function StatusToggleGroup({ value, onChange, namePrefix }) {
